@@ -120,7 +120,7 @@ export default function JourneyTimeline() {
                 {/* Mobile Dot */}
                 <span className="md:hidden absolute left-[10px] top-8 h-3 w-3 rounded-full bg-teal-700 shadow-[0_0_10px_rgba(34,211,238,0.9)]" />
 
-                <div className="md:w-1/2 pl-10 md:px-4 relative">
+                <div className="md:w-1/2 w-full pl-10 pr-4 md:px-4 relative">
                   {/* Desktop Dot */}
                   <span
                     className={`hidden md:block absolute top-8 h-4 w-4 rounded-full bg-teal-500 shadow-[0_0_12px_rgba(34,211,238,0.9)]
