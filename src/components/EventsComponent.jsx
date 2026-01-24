@@ -242,8 +242,9 @@ const Info = ({ icon, label, value }) => {
 
 /* -------------------- CARD -------------------- */
 
-const EventCard = ({ event, onClick }) => (
+const EventCard = ({ event, onRegister }) => (
   <div className="relative group h-full">
+    {/* Glow */}
     <div
       className="absolute inset-0 rounded-2xl blur-2xl opacity-20 group-hover:opacity-100 transition-opacity duration-700"
       style={{
@@ -251,10 +252,11 @@ const EventCard = ({ event, onClick }) => (
           "linear-gradient(135deg, rgba(44,190,194,0.18), rgba(14,59,63,0.45))",
       }}
     />
-    <div
-      onClick={onClick}
-      className="glass-panel relative h-full rounded-2xl p-6 flex flex-col justify-between transition-all duration-500 bg-[rgba(8,28,30,0.75)] border border-white/10 group-hover:-translate-y-1 group-hover:bg-[rgba(8,34,36,0.85)] group-hover:border-[#2CBEC2]/40 active:scale-[0.98]"
-    >
+
+    {/* ✅ Card Container (IMPORTANT) */}
+    <div className="glass-panel relative h-full rounded-2xl p-6 flex flex-col justify-between transition-all duration-500 bg-[rgba(8,28,30,0.75)] border border-white/10 group-hover:-translate-y-1 group-hover:bg-[rgba(8,34,36,0.85)] group-hover:border-[#2CBEC2]/40">
+
+      {/* Content */}
       <div>
         <div className="mb-5">{event.icon}</div>
         <h3 className="text-xl font-bold text-gray-100 mb-3">
@@ -265,12 +267,22 @@ const EventCard = ({ event, onClick }) => (
         </p>
       </div>
 
-      <span className="mt-6 inline-flex items-center text-sm font-semibold text-emerald-400">
-        View more to register <ArrowRight className="ml-2 w-4 h-4" />
-      </span>
+      {/* ✅ ONLY CLICKABLE AREA */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onRegister();
+        }}
+        className="mt-6 inline-flex items-center text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition"
+      >
+        View more to register
+        <ArrowRight className="ml-2 w-4 h-4" />
+      </button>
     </div>
   </div>
 );
+
 
 /* -------------------- MAIN -------------------- */
 
@@ -282,7 +294,7 @@ const EventsComponent = ({ selectedEvent, setSelectedEvent }) => {
           <div key={event.id} data-aos="fade-up" className="h-full">
             <EventCard
               event={event}
-              onClick={() => setSelectedEvent(event)}
+              onRegister={() => setSelectedEvent(event)}
             />
           </div>
         ))}
