@@ -16,8 +16,7 @@ import {
 
 /* -------------------- CONFIGURATION -------------------- */
 
-// 👇 PASTE YOUR GOOGLE FORM LINK INSIDE THE QUOTES BELOW 👇
-const COMBO_PASS_GOOGLE_FORM = "https://forms.google.com/your-google-form-link-here";
+const COMBO_PASS_GOOGLE_FORM = "https://docs.google.com/forms/d/e/1FAIpQLScEyHoI4dyu5vvK2Ikca__rkB887yXrfeSTncom4m1Ann4miw/viewform";
 
 /* -------------------- DATA -------------------- */
 
