@@ -12,11 +12,17 @@ function Navbar({ hidden }) {
       border-b border-[rgba(0,255,200,0.25)]">
 
       {/* Logo */}
-      <div className="text-[1.4rem] font-bold cursor-pointer 
+      
+      <section className="flex items-center text-[1.4rem] font-bold cursor-pointer 
         bg-gradient-to-r from-[#206a6e] to-[#28a3a9] 
         bg-clip-text text-transparent">
-        AI WEEK
-      </div>
+        <img
+          src="/logo.png"
+          alt="logo"
+          className="h-8 w-auto md:h-10 object-contain"
+        />
+        <span className="ml-1">AI WEEK</span>
+      </section>
 
       {/* Hamburger */}
       <div
@@ -49,7 +55,7 @@ function Navbar({ hidden }) {
                      : "opacity-0 -translate-y-5 pointer-events-none md:opacity-100 md:translate-y-0 md:pointer-events-auto"}
         `}
       >
-        {["Home", "Events", "Timeline", "Contact"].map((item, i) => (
+        {["Home", "About", "Events", "Timeline", "Contact"].map((item, i) => (
           <a
             key={item}
             href={`#${item.toLowerCase()}`}

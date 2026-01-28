@@ -17,6 +17,7 @@ const Contact = () => {
         <div className="absolute top-[-25%] left-[5%] w-[420px] h-[420px] bg-cyan-900/20 rounded-full blur-[160px]" />
         <div className="absolute bottom-[-25%] right-[5%] w-[420px] h-[420px] bg-teal-900/20 rounded-full blur-[160px]" />
       </div>
+      
 
       {/* Container */}
       <div className="relative bottom-15 z-10 max-w-6xl mx-auto">
@@ -75,10 +76,10 @@ const Contact = () => {
 
               <div className="space-y-6">
                 {[
-                  ["Shruthika", "+919573288738"],
-                  ["Neehar", "+918328089874"],
-                  ["Chaitanya", "+919347290006"],
-                  ["Bhanusree", "+919381331830"],
+                  ["Devaamsh", "+91 8106993581"],
+                  ["Neehar", "+91 8328089874"],
+                  ["Sahithi", "+91 8919291742"],
+                  ["Gowtham", "+91 8688753022"],
                 ].map(([name, phone]) => (
                   <div key={phone} className="group">
                     <p className="text-gray-200 font-medium">
@@ -100,65 +101,95 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN — Faculty Coordinators */}
-          <div className="flex items-center justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
-              {[
-                {
-                  name: "Dr. Sagar Yeruva",
-                  role: "Head of Department",
-                  img: "/sagarsir.jpeg",
-                },
-                {
-                  name: "Dr. A. Kousar Nikhath",
-                  role: "Faculty coordinator",
-                  img: "/kousarmaam.jpeg",
-                },
-                {
-                  name: "Mr. Bhupesh Deka",
-                  role: "Faculty Coordinator",
-                  img: "/bhupeshsir.jpeg",
-                },
-              ].map((faculty) => (
-                <div
-                  key={faculty.name}
-                  className="flex flex-col items-center text-center"
-                >
-                  {/* Image */}
-                  <div
-                    className="
-                      w-40 h-40
-                      rounded-full
-                      overflow-hidden
-                      bg-[#041414]
-                      shadow-[0_0_60px_rgba(48,183,196,0.18)]
-                    "
-                  >
-                    <img
-                      src={faculty.img}
-                      alt={faculty.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+          {/* RIGHT COLUMN — College Info + Faculty Coordinators */}
+            <div className="flex items-start justify-center">
+              <div className="w-full ">
 
-                  {/* Name */}
-                  <p className="mt-4 text-gray-200 font-semibold">
-                    {faculty.name}
-                  </p>
+                {/* COLLEGE LOGO */}
+                    <div
+                      className="
+                        mt-10
+                        flex justify-center
+                        md:justify-end
+                        px-4
+                        lg:absolute
+                        lg:-top-4
+                        lg:right-0
+                      "
+                    >
+                      <img
+                        src="/vnrvjiet.png"
+                        alt="VNRVJIET"
+                        className="
+                          h-24
+                          lg:h-24
+                          object-contain
+                          opacity-90
+                        "
+                      />
+                    </div>
+                <div className="py-10" />
+                {/* FACULTY COORDINATORS */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mt-6">
+                  {[
+                    {
+                      name: "Dr. Sagar Yeruva",
+                      role: "Head of Department",
+                      img: "/sagarsir.jpeg",
+                    },
+                    {
+                      name: "Dr. A. Kousar Nikhath",
+                      role: "Faculty Coordinator",
+                      img: "/kousarmaam.jpeg",
+                    },
+                    {
+                      name: "Mr. Bhupesh Deka",
+                      role: "Faculty Coordinator",
+                      img: "/bhupeshsir.jpg",
+                    },
+                  ].map((faculty) => (
+                    <div
+                      key={faculty.name}
+                      className="flex flex-col items-center text-center"
+                    >
+                      {/* Image */}
+                      <div
+                        className="
+                          w-40 h-40
+                          rounded-full
+                          overflow-hidden
+                          bg-[#041414]
+                          shadow-[0_0_60px_rgba(48,183,196,0.18)]
+                        "
+                      >
+                        <img
+                          src={faculty.img}
+                          alt={faculty.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
 
-                  {/* Designation */}
-                  <p className="text-sm text-gray-400">
-                    {faculty.role}
-                  </p>
+                      {/* Name */}
+                      <p className="mt-4 text-gray-200 font-semibold">
+                        {faculty.name}
+                      </p>
 
-                  {/* dept */}
-                  <p className="text-sm text-gray-400">
-                    Dept. of CSE-AIML,IOT &RAI
-                  </p>
+                      {/* Designation */}
+                      <p className="text-sm text-gray-400">
+                        {faculty.role}
+                      </p>
+
+                      {/* Dept */}
+                      <p className="text-sm text-gray-400">
+                        Dept. of CSE-AIML, IOT & RAI
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+
+              </div>
             </div>
-          </div>
+
 
         </div>
       </div>

@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import EventsComponent from "./components/EventsComponent";
 import JourneyTimeline from "./components/JourneyTimeline";
 import Contact from "./components/contact";
+import AboutUs from "./components/AboutUs";
 
 function App() {
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -19,6 +20,10 @@ function App() {
         <Hero />
       </section>
 
+      <section id="about">
+        <AboutUs />
+      </section>
+
       {/* Events */}
       <section id="events">
         <EventsComponent
@@ -31,6 +36,8 @@ function App() {
       <section id="timeline">
         <JourneyTimeline />
       </section>
+
+      
 
       {/* Contact */}
       <section id="contact">

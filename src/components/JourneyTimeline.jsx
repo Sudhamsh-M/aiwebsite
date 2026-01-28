@@ -9,50 +9,56 @@ const EVENTS = [
     date: "Feb 9, 2026",
     location: "Main Auditorium",
     category: "Ceremony",
-    description: "AI Week kicks off with an inspiring inauguration ceremony that sets the tone for five days of innovation and collaboration. It’s not just about speeches—it’s about bringing together curious minds, passionate learners, and visionary leaders under one roof. The atmosphere will be filled with excitement as students, faculty, and guests unite to celebrate the beginning of a journey into the world of artificial intelligence.",
+    description: "AI Week begins with an inspiring inauguration that brings together curious minds, passionate learners, and visionary leaders, setting the stage for five days of innovation and collaboration.",
   },
   {
     id: "1",
-    title: "AI Tools Workshop",
-    startTime: "10:30 AM",
-    endTime: "01:00 PM",
-    date: "Feb 9, 2026",
+    title: "ML Challenge + Synthetic Data Creation",
+    startTime: "10:00 AM",
+    endTime: "05:00 PM",
+    date: "Feb 9-10, 2026",
+    POC: "Contact for more info:",
     location: "TBD",
-    category: "Workshops",
+    category: "Contests",
   },
   {
     id: "2",
-    title: "Robotics Workshop",
-    startTime: "02:00 PM",
-    endTime: "04:40 PM",
-    date: "Feb 9, 2026",
-    location: "TBD",
-    category: "Workshops",
-  },
-  {
-    id: "3",
     title: "Startup Expo",
     startTime: "10:00 AM",
     endTime: "05:00 PM",
     date: "Feb 10, 2026",
+    POC: "Contact for more info:",
     location: "TBD",
     category: "Contests",
   },
   {
-    id: "4",
-    title: "ML Challenge + Data Creation",
-    startTime: "10:00 AM",
-    endTime: "05:00 PM",
-    date: "Feb 10, 2026",
+    id: "3",
+    title: "AI Tools Workshop",
+    startTime: "10:30 AM",
+    endTime: "01:00 PM",
+    date: "Feb 11, 2026",
+    POC: "Contact for more info:",
     location: "TBD",
-    category: "Contests",
+    category: "Workshops",
   },
+  {
+    id: "4",
+    title: "Robotics Workshop",
+    startTime: "02:00 PM",
+    endTime: "04:40 PM",
+    date: "Feb 11, 2026",
+    POC: "Contact for more info:",
+    location: "TBD",
+    category: "Workshops",
+  },
+   
   {
     id: "5",
     title: "Vibe Coding Hackathon",
     startTime: "10:00 AM",
     endTime: "05:00 PM",
     date: "Feb 12, 2026",
+    POC: "Contact for more info:",
     location: "TBD",
     category: "Hackathons",
   },
@@ -62,6 +68,7 @@ const EVENTS = [
     startTime: "09:00 AM",
     endTime: "01:00 PM",
     date: "Feb 13, 2026",
+    POC: "Contact for more info:",
     location: "Innovation Hub",
     category: "Workshops",
   },
@@ -129,11 +136,11 @@ export default function JourneyTimeline() {
         if (lineTipY >= dotTop - 10) {
           // ACTIVE STATE: Bright Cyan & Glow
           dot.classList.remove("bg-teal-900", "border-teal-700");
-          dot.classList.add("bg-cyan-400", "shadow-[0_0_15px_rgba(34,211,238,0.8)]", "scale-125");
+          dot.classList.add("bg-teal-500", "shadow-[0_0_15px_rgba(34,211,238,0.6)]", "scale-110");
         } else {
           // INACTIVE STATE: Dark Teal & Dim
           dot.classList.add("bg-teal-900", "border-teal-700");
-          dot.classList.remove("bg-cyan-400", "shadow-[0_0_15px_rgba(34,211,238,0.8)]", "scale-125");
+          dot.classList.remove("bg-cyan-400", "shadow-[0_0_15px_rgba(34,211,238,0.6)]", "scale-110");
         }
       };
 
@@ -155,12 +162,12 @@ export default function JourneyTimeline() {
       ref={sectionRef}
       className="
         relative overflow-hidden
-        text-white py-20 px-4
+        text-white py-12 px-4
         bg-[linear-gradient(180deg,#040909,#030707)]
       "
     >
       {/* Header */}
-      <div className="max-w-6xl mx-auto text-center mb-20">
+      <div className="max-w-6xl mx-auto text-center mb-8">
         <h1 className="text-4xl md:text-5xl font-bold tracking-wide">
           THE{" "}
           <span className="bg-gradient-to-r from-[#217880] to-[#30b7c4] bg-clip-text text-transparent">
@@ -263,6 +270,12 @@ export default function JourneyTimeline() {
                     {event.description && (
                       <p className="text-gray-400 mt-3 text-sm leading-relaxed border-t border-teal-500/10 pt-3">
                         {event.description}
+                      </p>
+                    )}
+
+                    {event.POC && (
+                      <p className="text-gray-400 mt-3 text-sm leading-relaxed border-t border-teal-500/10 pt-3">
+                        {event.POC}
                       </p>
                     )}
 
