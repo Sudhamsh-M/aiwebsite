@@ -19,7 +19,7 @@ export default function AboutUs() {
             <h2 className="text-4xl md:text-5xl font-black tracking-tight
               bg-gradient-to-r from-[#217880] to-[#30b7c4]
               bg-clip-text text-transparent">
-              About Kritomedh
+              About Krithomedh
             </h2>
 
             <p className="mt-6 text-gray-400 leading-relaxed max-w-xl">
