@@ -12,6 +12,7 @@ import {
   Sparkles,
   ArrowLeft,
   Ticket,
+  X,
 } from "lucide-react";
 
 /* -------------------- CONFIGURATION -------------------- */
@@ -27,10 +28,10 @@ const eventsData = [
     title: "All-Access Combo Pass",
     icon: <Ticket className="w-8 h-8 text-yellow-600" />,
     teaser: "Unlock the full AI Week experience at a discounted price.",
-    
+
     // 👇 UPDATED TO YOUR NEW FILE NAME
-    poster: "/Main_poster.png", 
-    
+    poster: "/Main_poster.png",
+
     description: "Why choose one when you can have it all? The All-Access Combo Pass is the ultimate ticket for the dedicated innovator. It grants you entry to all 6 events—including every workshop, the hackathon, and the ML challenge—at a significantly bundled rate. Maximize your learning, network with everyone, and don't miss a single moment of AI Week.",
     date: "All Week Access",
     time: "Full Event Access",
@@ -117,6 +118,7 @@ const eventsData = [
 
 const EventModal = ({ event, onClose }) => {
   const [show, setShow] = useState(false);
+  const [showBundleSelection, setShowBundleSelection] = useState(false);
 
   useEffect(() => {
     if (event) {
@@ -124,6 +126,7 @@ const EventModal = ({ event, onClose }) => {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
+      setShowBundleSelection(false);
     }
     return () => (document.body.style.overflow = "auto");
   }, [event]);
@@ -131,12 +134,12 @@ const EventModal = ({ event, onClose }) => {
   if (!event) return null;
 
   const isCombo = event.id === 7;
-  const headerGradient = isCombo 
-    ? "from-yellow-500 to-amber-500" 
+  const headerGradient = isCombo
+    ? "from-yellow-500 to-amber-500"
     : "from-[#206a6e] to-[#28a3a9]";
 
   // --- RENDER CONTENT BASED ON EVENT TYPE ---
-  
+
   const renderActiveEventContent = () => (
     <>
       <div className="w-full overflow-hidden">
@@ -148,11 +151,11 @@ const EventModal = ({ event, onClose }) => {
       </div>
       <div className="h-10 md:h-16" />
       <div className="max-w-6xl mx-auto px-6 md:px-10 space-y-14">
-        
+
         <h2 className={`text-2xl font-bold text-center gap-y-20 text-[1.4rem] bg-gradient-to-r ${headerGradient} bg-clip-text text-transparent`}>
           EVENT DETAILS
         </h2>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-20 gap-y-10 justify-items-center text-center">
           <Info icon={<Calendar />} label="Date" value={event.date} />
           <Info icon={<Clock />} label="Time" value={event.time} />
@@ -177,78 +180,126 @@ const EventModal = ({ event, onClose }) => {
   const renderComingSoonContent = () => (
     <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
       <div className="max-w-lg w-full bg-white/5 border border-white/10 rounded-2xl p-10 backdrop-blur-sm shadow-2xl relative overflow-hidden">
-         {/* Decorative Background Glow */}
-         <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${headerGradient}`} />
+        {/* Decorative Background Glow */}
+        <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${headerGradient}`} />
 
-         <div className="flex justify-center mb-6">
-           <Clock className="w-16 h-16 text-teal-500 opacity-80" />
+        <div className="flex justify-center mb-6">
+          <Clock className="w-16 h-16 text-teal-500 opacity-80" />
         </div>
 
         <h2 className={`text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r ${headerGradient} bg-clip-text text-transparent`}>
           {event.title}
         </h2>
-        
+
         <div className="h-px w-20 bg-white/10 mx-auto my-6"></div>
 
         <h3 className="text-xl md:text-2xl font-semibold text-white mb-3">
           Registrations Opening Soon
         </h3>
-        
+
         <p className="text-gray-400 leading-relaxed">
-          We are finalizing the details for this event. 
-          <br/>Check back shortly to secure your spot!
+          We are finalizing the details for this event.
+          <br />Check back shortly to secure your spot!
         </p>
       </div>
     </div>
   );
 
   return (
-    <div
-      className={`fixed inset-0 z-50 transition-opacity duration-200 ${
-        show ? "opacity-100" : "opacity-0"
-      }`}
-    >
+    <>
       <div
-        className="absolute inset-0 bg-black/70 backdrop-blur-xl"
-        onClick={onClose}
-      />
-      <div className="absolute inset-x-0 top-1 bottom-0 bg-[#050505] text-white flex flex-col">
-        {/* Header */}
-        <div className="sticky top-0 z-50 h-16 px-6 flex items-center justify-between bg-[#050505]/95 backdrop-blur border-b border-white/10">
-          <button
-            onClick={onClose}
-            className="p-2 rounded-lg text-teal-700 hover:text-teal-600 hover:bg-white/5 transition"
-          >
-            <ArrowLeft className="w-5 h-5" /> Back
-          </button>
-          
-          <div className={`absolute left-1/2 -translate-x-1/2 text-[1.4rem] font-bold bg-gradient-to-r ${headerGradient} bg-clip-text text-transparent`}>
-            {isCombo ? "COMBO PASS" : "AI WEEK"}
-          </div>
-          
-          <div className="w-16" />
-        </div>
-
-        {/* Content Area */}
-        <div className="flex-1 overflow-y-auto">
-          {isCombo ? renderActiveEventContent() : renderComingSoonContent()}
-        </div>
-        
-        {/* Sticky Button (ONLY FOR COMBO PASS) */}
-        {isCombo && (
-          <div className="sticky bottom-0 w-full p-4 bg-[#050505]/90 backdrop-blur border-t border-white/10 flex justify-center">
-            <a 
-              href={COMBO_PASS_GOOGLE_FORM}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full md:w-auto md:px-16 py-4 rounded-xl font-bold text-white transition-all duration-300 hover:opacity-90 hover:scale-105 active:scale-95 shadow-lg bg-gradient-to-r from-yellow-600 to-amber-700 shadow-amber-900/20 text-center"
+        className={`fixed inset-0 z-50 transition-opacity duration-200 ${show ? "opacity-100" : "opacity-0"
+          }`}
+      >
+        <div
+          className="absolute inset-0 bg-black/70 backdrop-blur-xl"
+          onClick={onClose}
+        />
+        <div className="absolute inset-x-0 top-1 bottom-0 bg-[#050505] text-white flex flex-col">
+          {/* Header */}
+          <div className="sticky top-0 z-50 h-16 px-6 flex items-center justify-between bg-[#050505]/95 backdrop-blur border-b border-white/10">
+            <button
+              onClick={onClose}
+              className="p-2 rounded-lg text-teal-700 hover:text-teal-600 hover:bg-white/5 transition"
             >
-              Grab the Bundle
-            </a>
+              <ArrowLeft className="w-5 h-5" /> Back
+            </button>
+
+            <div className={`absolute left-1/2 -translate-x-1/2 text-[1.4rem] font-bold bg-gradient-to-r ${headerGradient} bg-clip-text text-transparent`}>
+              {isCombo ? "COMBO PASS" : "AI WEEK"}
+            </div>
+
+            <div className="w-16" />
           </div>
-        )}
+
+          {/* Content Area */}
+          <div className="flex-1 overflow-y-auto">
+            {isCombo ? renderActiveEventContent() : renderComingSoonContent()}
+          </div>
+
+          {/* Sticky Button (ONLY FOR COMBO PASS) */}
+          {isCombo && (
+            <div className="sticky bottom-0 w-full p-4 bg-[#050505]/90 backdrop-blur border-t border-white/10 flex justify-center">
+              <button
+                onClick={() => setShowBundleSelection(true)}
+                className="w-full md:w-auto md:px-16 py-4 rounded-xl font-bold text-white transition-all duration-300 hover:opacity-90 hover:scale-105 active:scale-95 shadow-lg bg-gradient-to-r from-yellow-600 to-amber-700 shadow-amber-900/20 text-center"
+              >
+                Grab the Bundle
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+
+      {/* Bundle Selection Popup */}
+      {showBundleSelection && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            onClick={() => setShowBundleSelection(false)}
+          />
+          <div className="relative bg-[#0a0a0a] border border-white/10 rounded-2xl p-8 max-w-md w-full shadow-2xl animate-in fade-in zoom-in duration-200">
+            <button
+              onClick={() => setShowBundleSelection(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <h3 className="text-2xl font-bold text-center mb-8 bg-gradient-to-r from-yellow-500 to-amber-500 bg-clip-text text-transparent">
+              Choose Your Pass
+            </h3>
+
+            <div className="space-y-4">
+              <a
+                href={COMBO_PASS_GOOGLE_FORM}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full py-4 px-6 rounded-xl bg-white/5 border border-white/10 hover:border-yellow-500/50 hover:bg-yellow-500/10 transition-all group"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold text-lg text-white">VNRVJIET Pass</span>
+                  <ArrowRight className="w-5 h-5 text-yellow-500 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              <a
+                // TODO: Update link for Non-VNRVJIET Pass
+                href="https://aspireup.ai/organization/krithomedh-vnrvjiet/event/100037"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full py-4 px-6 rounded-xl bg-white/5 border border-white/10 hover:border-teal-500/50 hover:bg-teal-500/10 transition-all group"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold text-lg text-white">Non-VNRVJIET Pass</span>
+                  <ArrowRight className="w-5 h-5 text-teal-500 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
@@ -270,21 +321,21 @@ const EventCard = ({ event, onRegister }) => {
   const isCombo = event.id === 7;
 
   const glowBackground = isCombo
-  ? "linear-gradient(135deg, rgba(255, 221, 89, 0.45), rgba(255, 170, 20, 0.65))"
-  : "linear-gradient(135deg, rgba(44,190,194,0.18), rgba(14,59,63,0.45))";
+    ? "linear-gradient(135deg, rgba(255, 221, 89, 0.45), rgba(255, 170, 20, 0.65))"
+    : "linear-gradient(135deg, rgba(44,190,194,0.18), rgba(14,59,63,0.45))";
 
-  const glowOpacity = isCombo 
-    ? "opacity-60 lg:opacity-80 group-hover:opacity-100" 
+  const glowOpacity = isCombo
+    ? "opacity-60 lg:opacity-80 group-hover:opacity-100"
     : "opacity-20 group-hover:opacity-100";
 
-  const borderColor = isCombo 
-    ? "border-yellow-400/30 group-hover:border-yellow-400/60" 
+  const borderColor = isCombo
+    ? "border-yellow-400/30 group-hover:border-yellow-400/60"
     : "border-white/10 group-hover:border-[#2CBEC2]/40";
-  
+
   const titleColor = isCombo ? "text-yellow-100" : "text-gray-100";
-  
-  const linkColor = isCombo 
-    ? "text-yellow-400 hover:text-yellow-300" 
+
+  const linkColor = isCombo
+    ? "text-yellow-400 hover:text-yellow-300"
     : "text-emerald-400 hover:text-emerald-300";
 
   return (
@@ -332,17 +383,17 @@ const EventsComponent = ({ selectedEvent, setSelectedEvent }) => {
   return (
     <section className="bg-[#050505] pt-16 pb-28 px-4 md:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Featured (Combo) */}
-        <div 
+        <div
           className="flex justify-center mb-16 relative z-10"
           data-aos="fade-down"
         >
           <div className="w-full max-w-md md:max-w-lg lg:scale-110 lg:hover:scale-[1.12] transition-transform duration-500">
-             <EventCard
-                event={featuredEvent}
-                onRegister={() => setSelectedEvent(featuredEvent)}
-              />
+            <EventCard
+              event={featuredEvent}
+              onRegister={() => setSelectedEvent(featuredEvent)}
+            />
           </div>
         </div>
 
