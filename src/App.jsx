@@ -20,10 +20,6 @@ function App() {
         <Hero />
       </section>
 
-      <section id="about">
-        <AboutUs />
-      </section>
-
       {/* Events */}
       <section id="events">
         <EventsComponent
@@ -37,7 +33,9 @@ function App() {
         <JourneyTimeline />
       </section>
 
-      
+      <section id="about">
+        <AboutUs />
+      </section>
 
       {/* Contact */}
       <section id="contact">

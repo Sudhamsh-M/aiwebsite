@@ -35,7 +35,7 @@ const eventsData = [
     description: "Why choose one when you can have it all? The All-Access Combo Pass is the ultimate ticket for the dedicated innovator. It grants you entry to all 6 events—including every workshop, the hackathon, and the ML challenge—at a significantly bundled rate. Maximize your learning, network with everyone, and don't miss a single moment of AI Week.",
     date: "All Week Access",
     time: "Full Event Access",
-    venue: "All Venues",
+    venue: "E Block VNRVJIET",
     Type: "Individual / Team",
   },
   {
@@ -103,6 +103,18 @@ const eventsData = [
   {
     id: 6,
     title: "Agentic AI + Deployment Workshop",
+    icon: <Zap className="w-8 h-8 text-orange-400" />,
+    teaser: "From agents to deployed apps.",
+    poster: "/kritoathon.jpeg",
+    description: "This workshop focuses on the cutting edge of AI—agentic systems and deployment strategies. Participants will learn how to move beyond theory, taking applications from development to real-world use. It’s a practical, future-focused session that equips attendees with skills to make their AI projects truly impactful.",
+    date: "13th Feb, 2026",
+    time: "10:00 AM - 01:00 PM",
+    venue: "Classroom",
+    Type: "Individual",
+  },
+  {
+    id: 8,
+    title: "Synth vision Hackathon",
     icon: <Zap className="w-8 h-8 text-orange-400" />,
     teaser: "From agents to deployed apps.",
     poster: "/kritoathon.jpeg",
@@ -340,16 +352,25 @@ const EventCard = ({ event, onRegister }) => {
 
   return (
     <div className="relative group h-full">
+      {/* Background Glow */}
       <div
         className={`absolute inset-0 rounded-2xl blur-2xl transition-opacity duration-700 ${glowOpacity}`}
         style={{ background: glowBackground }}
       />
 
-      <div className={`glass-panel relative h-full rounded-2xl p-6 flex flex-col justify-between transition-all duration-500 bg-[rgba(8,28,30,0.75)] border group-hover:-translate-y-1 group-hover:bg-[rgba(8,34,36,0.85)] ${borderColor}`}>
+      {/* Main Card Content - Made Clickable */}
+      <div
+        onClick={onRegister} // 👈 1. Added Click Handler Here
+        className={`glass-panel relative h-full rounded-2xl p-6 flex flex-col justify-between transition-all duration-500 bg-[rgba(8,28,30,0.75)] border group-hover:-translate-y-1 group-hover:bg-[rgba(8,34,36,0.85)] ${borderColor} cursor-pointer`} // 👈 2. Added cursor-pointer
+      >
         <div>
           <div className="mb-5 flex justify-between items-start">
             {event.icon}
-            {isCombo && <span className="bg-yellow-500/20 text-yellow-300 text-[10px] font-bold px-2 py-1 rounded border border-yellow-500/30">BEST VALUE</span>}
+            {isCombo && (
+              <span className="bg-yellow-500/20 text-yellow-300 text-[10px] font-bold px-2 py-1 rounded border border-yellow-500/30">
+                BEST VALUE
+              </span>
+            )}
           </div>
           <h3 className={`text-xl font-bold mb-3 ${titleColor}`}>
             {event.title}
@@ -358,12 +379,10 @@ const EventCard = ({ event, onRegister }) => {
             {event.teaser}
           </p>
         </div>
+
+        {/* Button is now purely visual (click passes through to parent) */}
         <button
           type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            onRegister();
-          }}
           className={`mt-6 inline-flex items-center text-sm font-semibold transition ${linkColor}`}
         >
           {isCombo ? "Register Now" : "View Details"}
@@ -398,23 +417,27 @@ const EventsComponent = ({ selectedEvent, setSelectedEvent }) => {
         </div>
 
         {/* Regular Events */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {regularEvents.map((event) => {
-            return (
-              <div
-                key={event.id}
-                data-aos="fade-up"
-                data-aos-once="false"
-                className="h-full"
-              >
-                <EventCard
-                  event={event}
-                  onRegister={() => setSelectedEvent(event)}
-                />
-              </div>
-            );
-          })}
-        </div>
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {regularEvents.map((event, index) => {
+    const isLastItem = index === regularEvents.length - 1;
+    const shouldCenter = isLastItem && regularEvents.length % 3 === 1;
+
+    return (
+      <div
+        key={event.id}
+        data-aos="fade-up"
+        data-aos-once="false"
+        // 👇 Added lg:col-start-2 conditionally
+        className={`h-full ${shouldCenter ? "lg:col-start-2" : ""}`}
+      >
+        <EventCard
+          event={event}
+          onRegister={() => setSelectedEvent(event)}
+        />
+      </div>
+    );
+  })}
+</div>
 
       </div>
 

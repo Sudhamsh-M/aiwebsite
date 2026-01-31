@@ -71,7 +71,7 @@ function Hero() {
             hover:shadow-[0_0_32px_rgba(40,160,160,0.55)]
           "
         >
-          View Events
+          Register Now
         </Link>
       </div>
     </section>

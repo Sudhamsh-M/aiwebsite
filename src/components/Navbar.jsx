@@ -55,7 +55,7 @@ function Navbar({ hidden }) {
                      : "opacity-0 -translate-y-5 pointer-events-none md:opacity-100 md:translate-y-0 md:pointer-events-auto"}
         `}
       >
-        {["Home", "About", "Events", "Timeline", "Contact"].map((item, i) => (
+        {["Home", "Events", "Timeline", "About", "Contact"].map((item, i) => (
           <a
             key={item}
             href={`#${item.toLowerCase()}`}
