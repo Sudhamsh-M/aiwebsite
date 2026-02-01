@@ -23,15 +23,9 @@ export default function AboutUs() {
             </h2>
 
             <p className="mt-6 text-gray-400 leading-relaxed max-w-xl">
-              AI Week is a celebration of innovation, curiosity, and collaboration.
-              We bring together students, educators, and industry experts to explore
-              artificial intelligence through hands-on learning and real-world ideas.
+              Krithomedh is a student-driven technical club of department of AIML & IOT in VNRVJIET dedicated to exploring and advancing the field of Artificial Intelligence and Machine Learning. Our mission is to empower students with AI knowledge and practical skills, enabling them to build intelligent solutions for real-world problems. We conduct workshops, hands-on coding sessions and project-based learning focused on AI, ML, deep learning, and data-driven technologies.
             </p>
 
-            <p className="mt-4 text-gray-500 max-w-xl">
-              From beginner-friendly sessions to advanced AI deployments,
-              our goal is to empower minds and spark future-ready innovation.
-            </p>
           </div>
 
           {/* RIGHT FEATURE CARDS */}
