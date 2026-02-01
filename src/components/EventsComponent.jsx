@@ -35,6 +35,20 @@ const eventsData = [
     time: "Full Event Access",
     venue: "E Block VNRVJIET",
     Type: "Individual / Team",
+    pocs: [
+    {
+      name: "Devaamsh", phone: "+91 8106993581"
+    },
+    {
+      name: "Neehar", phone: "+91 8328089874"
+    },
+     {
+      name: "Sahithi", phone: "+91 8919291742"
+    },
+     {
+      name: "Gowtham", phone: "+91 8688753022"
+    }
+  ],
     // Combo pass logic is handled separately via the Modal popup
     registrationLink: null, 
   },
@@ -49,6 +63,17 @@ const eventsData = [
     time: "10:00 AM - 01:00 PM",
     venue: "E Block VNRVJIET",
     Type: "Individual",
+    pocs: [
+    {
+      name: "Snehin", phone: "+91 8309067253"
+    },
+    {
+      name: "Tanirika", phone: "+91 8790513595"
+    },
+     {
+      name: "Svikrithi", phone: "+91 7330997474"
+    }
+  ],
     registrationLink: "https://aspireup.ai/organization/krithomedh-vnrvjiet/event/100045",
   },
   {
@@ -62,6 +87,17 @@ const eventsData = [
     time: "02:00 PM - 04:40 PM",
     venue: "E Block VNRVJIET",
     Type: "Individual",
+    pocs: [
+    {
+      name: "Ranadheer", phone: "+91 6309416266"
+    },
+    {
+      name: "Abhiram", phone: "+91 9989947046"
+    },
+     {
+      name: "Sathwik", phone: "+91 9030242979"
+    }
+  ],
     registrationLink: "https://aspireup.ai/organization/krithomedh-vnrvjiet/event/100041",
   },
   {
@@ -75,6 +111,17 @@ const eventsData = [
     time: "10:00 AM - 05:00 PM",
     venue: "E Block VNRVJIET",
     Type: "Team size(1 - 4)",
+    pocs: [
+    {
+      name: "Asritha", phone: "+91 6300246745"
+    },
+    {
+      name: "Kushwanth", phone: "+91 9866333779"
+    },
+     {
+      name: "Arundathi", phone: "+91 7032825635"
+    }
+  ],
     registrationLink: "https://aspireup.ai/organization/krithomedh-vnrvjiet/event/100042",
   },
   {
@@ -88,6 +135,23 @@ const eventsData = [
     time: "10:00 AM - 05:00 PM",
     venue: "E Block VNRVJIET",
     Type: "Team size(2 - 4)",
+    pocs: [
+    {
+      name: "Lasya", phone: "+91 9059479540"
+    },
+    {
+      name: "Aishwarya", phone: "+91 9573602722"
+    },
+    {
+      name: "Sahithi", phone: "+91 9182624247"
+    },
+     {
+      name: "Javali", phone: "+91 9515233801"
+    },
+    {
+      name: "Pallavi", phone: "+91 8919505048"
+    }
+  ],
     registrationLink: "https://aspireup.ai/organization/krithomedh-vnrvjiet/event/100044",
   },
   {
@@ -101,6 +165,17 @@ const eventsData = [
     time: "10:00 AM - 04:40 PM",
     venue: "E Block VNRVJIET",
     Type: "Team size(2 - 4)",
+    pocs: [
+    {
+      name: "Shreya", phone: "+91 7799881930"
+    },
+    {
+      name: "Rakshitha", phone: "+91 9949629139"
+    },
+     {
+      name: "Sudhamsh", phone: "+91 8500252138"
+    }
+  ],
     registrationLink: "https://aspireup.ai/organization/krithomedh-vnrvjiet/event/100040",
   },
   {
@@ -114,6 +189,17 @@ const eventsData = [
     time: "10:00 AM - 01:00 PM",
     venue: "E Block VNRVJIET",
     Type: "Individual",
+    pocs: [
+    {
+      name: "Hamsini", phone: "+91 7093479627"
+    },
+    {
+      name: "Suhaas", phone: "+91 6305715697"
+    },
+     {
+      name: "Sahithi", phone: "+91 7993423386"
+    }
+  ],
     //registrationLink: "https://aspireup.ai/organization/krithomedh-vnrvjiet/event/100046",
   },
   {
@@ -127,6 +213,17 @@ const eventsData = [
     time: "10:00 AM - 05:00 PM",
     venue: "E Block VNRVJIET",
     Type: "Team size(2 - 4)",
+    pocs: [
+    {
+      name: "Lohitha", phone: "+91 807446522"
+    },
+    {
+      name: "Bhavya", phone: "+91 7032320044"
+    },
+     {
+      name: "Nikhila", phone: "+91 9866230713"
+    }
+  ],
     registrationLink: "https://aspireup.ai/organization/krithomedh-vnrvjiet/event/100043",
   },
 ];
@@ -186,6 +283,19 @@ const EventModal = ({ event, onClose }) => {
           <p className="text-gray-300 leading-relaxed">
             {event.description}
           </p>
+          <h3 className={`text-lg text-[1.4rem] py-5 font-bold bg-gradient-to-r ${headerGradient} bg-clip-text text-transparent mb-3`}>
+            Contact for queries
+          </h3>
+          
+          {event.pocs && event.pocs.length > 0 && (
+          <div className="space-y-2 text-gray-300">
+            {event.pocs.map((poc, index) => (
+              <p key={index} className="font-medium">
+                {poc.name} – {poc.phone}
+              </p>
+            ))}
+          </div>
+        )}
         </section>
 
         <div className="h-8 md:h-12" />
