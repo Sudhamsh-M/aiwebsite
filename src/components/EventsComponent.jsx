@@ -200,7 +200,7 @@ const eventsData = [
       name: "Sahithi", phone: "+91 7993423386"
     }
   ],
-    //registrationLink: "https://aspireup.ai/organization/krithomedh-vnrvjiet/event/100046",
+    registrationLink: "https://aspireup.ai/organization/krithomedh-vnrvjiet/event/100046",
   },
   {
     id: 8,
